@@ -3,7 +3,8 @@ const cors = require("cors");
 const { connectDB } = require("./config/db");
 const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
-
+const cartRouters = require("./routes/cartRouters");
+const { authenticateJWT } = require("./middewares/authenticateJWT");
 const server = express();
 const port = 3000;
 
@@ -20,6 +21,8 @@ server.use(
 // Routes
 server.use("/", productRoutes);
 server.use("/auth", authRoutes);
+
+server.use("/", authenticateJWT, cartRouters);
 
 server.listen(port, () => {
   console.log(`🚀 Server chạy tại http://localhost:${port}`);

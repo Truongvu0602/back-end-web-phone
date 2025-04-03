@@ -52,29 +52,9 @@ const getProductDetail = async (req, res) => {
     res.status(500).json({ message: "Lỗi server" });
   }
 };
-// Lấy giỏ hàng theo ID
-const getCartById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const product = await Product.findByPk(id);
-
-    if (!product) {
-      return res
-        .status(404)
-        .json({ message: "Không tìm thấy sản phẩm trong giỏ hàng" });
-    }
-
-    res.json(product);
-    console.log(product);
-  } catch (error) {
-    console.error("❌ Lỗi lấy giỏ hàng theo ID:", error);
-    res.status(500).json({ message: "Lỗi server" });
-  }
-};
 
 module.exports = {
   getAllProducts,
   getProductsByCategory,
   getProductDetail,
-  getCartById,
 };
