@@ -14,15 +14,15 @@ server.use(express.json());
 server.use(
   cors({
     origin: "http://localhost:5173",
-    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS", "PUT"],
   })
 );
 
 // Routes
-server.use("/", productRoutes);
+server.use("/product", productRoutes);
 server.use("/auth", authRoutes);
-
-server.use("/", authenticateJWT, cartRouters);
+server.use(authenticateJWT);
+server.use("/cart", cartRouters);
 
 server.listen(port, () => {
   console.log(`🚀 Server chạy tại http://localhost:${port}`);
