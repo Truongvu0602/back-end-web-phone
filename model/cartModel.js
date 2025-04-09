@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db");
-const User = require("./userModel");
-const Product = require("./productsModel");
+// const User = require("./userModel");
+// const Product = require("./productsModel");
 
 const Cart = sequelize.define(
   "cart",
@@ -22,7 +22,7 @@ const Cart = sequelize.define(
   }
 );
 
-Cart.belongsTo(User, { foreignKey: "userId", onDelete: "CASCADE" });
-Cart.belongsTo(Product, { foreignKey: "productId", onDelete: "CASCADE" });
+// Cart.belongsTo(User, { foreignKey: "userId", onDelete: "CASCADE" });
+// Cart.belongsTo(Product, { foreignKey: "productId", onDelete: "CASCADE" });
 
 module.exports = Cart;

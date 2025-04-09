@@ -43,7 +43,7 @@ const Product = sequelize.define(
     },
   },
   {
-    timestamps: true, // ⬅️ Nếu không muốn `createdAt` & `updatedAt`, đặt là `false`
+    timestamps: true, 
   }
 );
 
