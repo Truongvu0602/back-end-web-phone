@@ -5,6 +5,7 @@ const productRoutes = require("./routes/productRoutes");
 const authRoutes = require("./routes/authRoutes");
 const cartRouters = require("./routes/cartRouters");
 const orderRouter = require("./routes/orderRouter");
+const profileRouter = require("./routes/profileRouter");
 const { authenticateJWT } = require("./middewares/authenticateJWT");
 const server = express();
 const port = 3000;
@@ -25,6 +26,7 @@ server.use("/auth", authRoutes);
 server.use(authenticateJWT);
 server.use("/cart", cartRouters);
 server.use("/order", orderRouter);
+server.use("/profile", profileRouter);
 
 server.listen(port, () => {
   console.log(`🚀 Server chạy tại http://localhost:${port}`);

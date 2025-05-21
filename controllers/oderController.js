@@ -2,8 +2,6 @@ const { Order, OrderItem, Cart, Product } = require("../model");
 
 const getCart = async (req, res) => {
   try {
-    console.log(1);
-
     console.log(req.user);
 
     const userId = req.user.userId;
