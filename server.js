@@ -9,6 +9,7 @@ const profileRouter = require("./routes/profileRouter");
 const { authenticateJWT } = require("./middewares/authenticateJWT");
 const server = express();
 const port = 3000;
+const path = require("path");
 
 connectDB();
 
@@ -21,6 +22,10 @@ server.use(
 );
 
 // Routes
+server.use(
+  "/uploads",
+  express.static(path.join(__dirname, "public", "uploads"))
+);
 server.use("/product", productRoutes);
 server.use("/auth", authRoutes);
 server.use(authenticateJWT);

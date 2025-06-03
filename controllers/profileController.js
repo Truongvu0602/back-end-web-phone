@@ -5,7 +5,7 @@ const getProfile = async (req, res) => {
     const userId = req.user.userId;
 
     const user = await User.findByPk(userId, {
-      attributes: ["userName", "email"],
+      attributes: ["userName", "email", "avatar"], // Thêm avatar ở đây
     });
 
     if (!user) {
@@ -15,15 +15,18 @@ const getProfile = async (req, res) => {
     return res.status(200).json({
       userName: user.userName,
       email: user.email,
+      avatar: user.avatar, // Trả về avatar luôn
     });
   } catch (error) {
     console.error("Lỗi khi lấy thông tin người dùng:", error);
     return res.status(500).json({ message: "Lỗi server" });
   }
 };
+
 const updateProfile = async (req, res) => {
   try {
     console.log("Dữ liệu nhận từ frontend:", req.body); // <-- thêm dòng này để log dữ liệu
+    console.log(`đay là req ${req.file.processedFilename}`);
 
     const userId = req.user.userId;
     const { userName, email } = req.body;
@@ -34,6 +37,9 @@ const updateProfile = async (req, res) => {
 
     user.userName = userName;
     user.email = email;
+    if (req.file?.processedFilename) {
+      user.avatar = req.file?.processedFilename;
+    }
     await user.save();
 
     return res.status(200).json({ message: "Cập nhật thành công" });

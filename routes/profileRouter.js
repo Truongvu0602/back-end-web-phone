@@ -4,8 +4,14 @@ const {
   getProfile,
   updateProfile,
 } = require("../controllers/profileController");
-
+const upload = require("../middewares/upload");
+const imageProcessingMiddleware = require("../middewares/imageProcessingMiddleware");
 router.get("/getProfile", getProfile);
-router.put("/updateProfile", updateProfile);
+router.put(
+  "/updateProfile",
+  upload.uploadSingleImage("image"),
+  imageProcessingMiddleware.resizeImage,
+  updateProfile
+);
 
 module.exports = router;
